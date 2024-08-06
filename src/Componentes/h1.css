@@ -1,0 +1,8 @@
+/*Estilos texto*/
+h1 {
+    text-align: center;
+    justify-content: center;
+    font-size: 2em;
+    color: #fff;
+    margin: 70px;
+}

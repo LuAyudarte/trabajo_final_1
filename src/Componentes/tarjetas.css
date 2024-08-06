@@ -1,0 +1,168 @@
+/*Variables tarjetas*/
+:root {
+    --primer-color: hsl(234, 78%, 19%);
+    --color-titulo: hsl(0, 0%, 15%);
+    --color-texto: hsl(0, 0%, 35%);
+    --tarjetas-color: hsl(0, 0%, 100%);
+    --h2-font-size: 1.25rem;
+    --small-font-size: .813rem;
+}
+
+/*Estilos tarjetas*/
+.tarjetas {
+    display: grid;
+    place-items: center;
+    margin-inline: 1.5rem;
+    margin-top: -100px;
+    padding-block: 5rem;
+    scroll-margin-top: 8ex;
+}
+
+.contenedor_tarjetas {
+    display: grid;
+    row-gap: 3.5rem;
+}
+
+.articulo_tarjeta {
+    position: relative;
+    overflow: hidden;
+}
+
+.imagen_tarjeta {
+    width: 328px;
+    border-radius: 1.5rem;
+}
+
+.texto_tarjeta {
+    width: 280px;
+    background-color: var(--tarjetas-color);
+    padding: 1.5rem 2rem;
+    box-shadow: 0 8px 24px hsla(0, 0%, 0%, .15);
+    border-radius: 1rem;
+    position: absolute;
+    bottom: -9rem;
+    left: 0;
+    right: 0;
+    margin-inline: auto;
+    opacity: 0;
+    transition: opacity 1s 1s;
+}
+
+.descripcion_tarjeta {
+    display: block;
+    font-size: var(--small-font-size);
+    margin-bottom: .25rem;
+}
+
+.titulo_tarjeta {
+    font-size: var(--h2-font-size);
+    font-weight: 500;
+    color: var(--color-titulo);
+    margin-bottom: .75rem;
+}
+
+.boton_tarjeta {
+    text-decoration: none;
+    font-size: var(--small-font-size);
+    font-weight: 500;
+    color: var(--primer-color);
+}
+
+.boton_tarjeta:hover {
+    text-decoration: underline;
+}
+
+.articulo_tarjeta:hover .texto_tarjeta {
+    animation: show-data 1s forwards;
+    opacity: 1;
+    transition: opacity .3s;
+}
+
+.articulo_tarjeta:hover {
+    animation: remove-overflow 2s forwards;
+}
+
+.articulo_tarjeta:not(:hover){
+    animation: show-overflow 2s forwards;
+}
+
+.articulo_tarjeta:not(:hover) .texto_tarjeta{
+    animation: remove-data 1s forwards;
+}
+
+/*Animaciones de las tarjetas*/
+@keyframes show-data {
+    50%{
+        transform: translateY(-10rem);
+    }
+    100% {
+        transform: translateY(-7rem);
+    }
+}
+
+@keyframes remove-overflow {
+    to {
+        overflow: initial;
+    }
+}
+
+@keyframes remove-data {
+    0%{
+        transform: translateY(-7rem);
+    }
+    50%{
+        transform: translateY(-10rem);
+    }
+    100% {
+        transform: translateY(.5rem);
+    }
+}
+
+@keyframes show-overflow {
+    0% {
+        overflow: initial;
+        pointer-events: none;
+    }
+    50% {
+        overflow: hidden;
+    }
+}
+
+/*Diseño responsivo de las tarjetas*/
+@media screen and (max-width:340px){
+    .tarjetas {
+        margin-inline: 1rem;
+    }
+
+    .texto_tarjeta{
+        width: 250px;
+        padding: 1rem;
+    }
+}
+
+@media screen and (min-width:768px){
+    .contenedor_tarjetas {
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 1.5rem;
+    }
+}
+
+@media screen and (min-width: 1120px) {
+    :root {
+        --h2-font-size: 1.5rem;
+        --small-font-size: .875rem;
+    }
+    .tarjetas {
+        height: 100vh;
+    }
+    .contenedor_tarjetas {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .imagen_tarjeta {
+        width: 348px;
+    }
+    .texto_tarjeta {
+        width: 316px;
+        padding-inline: 2.5rem;
+    }
+}
